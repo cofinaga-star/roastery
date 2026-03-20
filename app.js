@@ -18,7 +18,7 @@
    1️⃣  Firebase Configuration & Initialization
    -------------------------------------------------------------- */
 const firebaseConfig = {
-    apiKey: "AIzaSyB3XJrZRNxx7tvH0ugd49k_kEOUhxp2R60",
+    apiKey: "AIzaSyB3XJrRZNxx7tyHOugd49k_kEQUhxp2R60",
     authDomain: "tet-s-coffee-roastery.firebaseapp.com",
     projectId: "tet-s-coffee-roastery",
     // NOTE: storage bucket must end with *.appspot.com
