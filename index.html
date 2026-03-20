@@ -5,303 +5,270 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tet's Coffee Roastery</title>
 
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome icons (optional but used in the UI) -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           integrity="sha512-..."
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <!-- App styles -->
+    <!-- Your app stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ---------- AUTH SCREEN ---------- -->
-<div id="login-screen" class="auth-screen">
-    <div class="auth-container">
-        <div class="logo">
-            <i class="fas fa-coffee"></i>
-            <h1>Tet's Coffee Roastery</h1>
-            <p>Premium Coffee Management System</p>
-        </div>
-
-        <div class="auth-form">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="you@example.com">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="••••••••">
-            </div>
-
-            <button id="login-btn" class="btn primary">Login</button>
-            <button id="register-btn" class="btn secondary">Register</button>
-
-            <div id="auth-error" class="error-message"></div>
-        </div>
-    </div>
-</div>
-
-<!-- ---------- MAIN APP ---------- -->
-<div id="app" class="app-container hidden">
-    <!-- Header -->
-    <header>
-        <div class="header-content">
+    <!-- ==== AUTH SCREEN ==== -->
+    <div id="login-screen" class="auth-screen">
+        <div class="auth-container">
             <div class="logo">
                 <i class="fas fa-coffee"></i>
                 <h1>Tet's Coffee Roastery</h1>
+                <p>Premium Coffee Management System</p>
             </div>
-
-            <div class="user-info">
-                <span id="user-email"></span>
-                <button id="logout-btn" class="btn secondary small">Logout</button>
+            <div class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••">
+                </div>
+                <button id="login-btn" class="btn primary">Login</button>
+                <button id="register-btn" class="btn secondary">Register</button>
+                <div id="auth-error" class="error-message"></div>
             </div>
         </div>
-    </header>
-
-    <!-- Nav -->
-    <nav class="main-nav">
-        <button id="show-dashboard" class="nav-btn active">
-            <i class="fas fa-chart-line"></i><span>Dashboard</span>
-        </button>
-        <button id="show-roasts" class="nav-btn">
-            <i class="fas fa-fire"></i><span>Roasts</span>
-        </button>
-        <button id="show-inventory" class="nav-btn">
-            <i class="fas fa-boxes"></i><span>Inventory</span>
-        </button>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Dashboard -->
-        <section id="dashboard" class="section active">
-            <div class="dashboard-header">
-                <h2>Dashboard Overview</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-weight-hanging"></i>
-                        <div class="stat-content">
-                            <h3 id="total-inventory">0 kg</h3>
-                            <p>Total Inventory</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-fire"></i>
-                        <div class="stat-content">
-                            <h3 id="total-roasts">0</h3>
-                            <p>Total Roasts</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-percentage"></i>
-                        <div class="stat-content">
-                            <h3 id="avg-yield">0%</h3>
-                            <p>Avg. Yield</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-calendar-week"></i>
-                        <div class="stat-content">
-                            <h3 id="week-output">0 kg</h3>
-                            <p>Output (Last 7 days)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-content">
-                <h3>Recent Roasts</h3>
-                <div id="recent-roasts" class="recent-roasts-list">
-                    <p>Loading …</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Roasts -->
-        <section id="roasts" class="section">
-            <div class="section-header">
-                <h2>Roasting Schedule</h2>
-                <button id="add-roast-btn" class="btn primary"><i class="fas fa-plus"></i> Add Roast</button>
-            </div>
-
-            <div class="table-container">
-                <table id="roasts-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th><th>Bean</th><th>Origin</th>
-                            <th>Input (kg)</th><th>Output (kg)</th>
-                            <th>Yield %</th><th>Notes</th><th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="roasts-body">
-                        <tr><td colspan="8">Loading …</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Inventory -->
-        <section id="inventory" class="section">
-            <div class="section-header">
-                <h2>Green Coffee Inventory</h2>
-                <button id="add-inventory-btn" class="btn primary"><i class="fas fa-plus"></i> Add Inventory</button>
-            </div>
-
-            <div class="table-container">
-                <table id="inventory-table">
-                    <thead>
-                        <tr>
-                            <th>Bean</th><th>Origin</th><th>Variety</th>
-                            <th>Process</th><th>Quantity (kg)</th><th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="inventory-body">
-                        <tr><td colspan="6">Loading …</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-</div>
-
-<!-- *** MODALS *** -->
-<!-- Roast Modal -->
-<div id="roast-modal" class="modal hidden">
-    <div class="modal-overlay"></div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="roast-modal-title">Add New Roast</h3>
-            <button class="modal-close">&times;</button>
-        </div>
-
-        <form id="roast-form">
-            <input type="hidden" id="roast-id">
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="roast-date">Date</label>
-                    <input type="date" id="roast-date" required>
-                </div>
-                <div class="form-group">
-                    <label for="roast-bean">Bean Name</label>
-                    <input type="text" id="roast-bean" placeholder="Ethiopia Yirgacheffe" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="roast-origin">Origin</label>
-                    <input type="text" id="roast-origin" placeholder="Sidamo, Ethiopia">
-                </div>
-                <div class="form-group">
-                    <label for="roast-variety">Variety</label>
-                    <select id="roast-variety">
-                        <option>Arabica</option>
-                        <option>Robusta</option>
-                        <option>Liberica</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="roast-input">Input (kg)</label>
-                    <input type="number" id="roast-input" step="0.1" min="0" required>
-                </div>
-                <div class="form-group">
-                    <label for="roast-output">Output (kg)</label>
-                    <input type="number" id="roast-output" step="0.1" min="0" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="roast-notes">Notes</label>
-                <textarea id="roast-notes" rows="3" placeholder="Roasting notes …"></textarea>
-            </div>
-
-            <div class="form-actions">
-                <button type="button" class="btn secondary" id="cancel-roast">Cancel</button>
-                <button type="submit" class="btn primary">Save Roast</button>
-            </div>
-        </form>
     </div>
-</div>
 
-<!-- Inventory Modal -->
-<div id="inventory-modal" class="modal hidden">
-    <div class="modal-overlay"></div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="inventory-modal-title">Add Inventory Item</h3>
-            <button class="modal-close">&times;</button>
-        </div>
-
-        <form id="inventory-form">
-            <input type="hidden" id="inventory-id">
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="inventory-bean">Bean Name</label>
-                    <input type="text" id="inventory-bean" placeholder="Ethiopia Yirgacheffe" required>
+    <!-- ==== MAIN APP ==== -->
+    <div id="app" class="app-container hidden">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-coffee"></i>
+                    <h1>Tet's Coffee Roastery</h1>
                 </div>
-                <div class="form-group">
-                    <label for="inventory-quantity">Quantity (kg)</label>
-                    <input type="number" id="inventory-quantity" step="0.1" min="0" required>
+                <div class="user-info">
+                    <span id="user-email"></span>
+                    <button id="logout-btn" class="btn secondary small">Logout</button>
                 </div>
             </div>
+        </header>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="inventory-origin">Origin</label>
-                    <input type="text" id="inventory-origin" placeholder="Sidamo, Ethiopia" required>
-                </div>
-                <div class="form-group">
-                    <label for="inventory-variety">Variety</label>
-                    <select id="inventory-variety">
-                        <option>Arabica</option>
-                        <option>Robusta</option>
-                        <option>Liberica</option>
-                    </select>
-                </div>
-            </div>
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <button id="show-dashboard"   class="nav-btn active"><i class="fas fa-chart-line"></i>Dashboard</button>
+            <button id="show-roasts"      class="nav-btn"><i class="fas fa-fire"></i>Roasts</button>
+            <button id="show-inventory"   class="nav-btn"><i class="fas fa-boxes"></i>Inventory</button>
+        </nav>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="inventory-process">Process</label>
-                    <select id="inventory-process">
-                        <option>Washed</option>
-                        <option>Natural</option>
-                        <option>Honey</option>
-                        <option>Semi‑washed</option>
-                    </select>
+        <!-- Main content (sections) -->
+        <main>
+            <!-- Dashboard --------------------------------------------------- -->
+            <section id="dashboard" class="section active">
+                <div class="dashboard-header">
+                    <h2>Dashboard Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-weight-hanging"></i>
+                            <div class="stat-content"><h3 id="total-inventory">0 kg</h3><p>Total Inventory</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-fire"></i>
+                            <div class="stat-content"><h3 id="total-roasts">0</h3><p>Total Roasts</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-percentage"></i>
+                            <div class="stat-content"><h3 id="avg-yield">0%</h3><p>Avg. Yield</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-week"></i>
+                            <div class="stat-content"><h3 id="week-output">0 kg</h3><p>Output (Last 7 days)</p></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="inventory-notes">Notes (optional)</label>
-                    <input type="text" id="inventory-notes" placeholder="e.g., high‑altitude">
-                </div>
-            </div>
 
-            <div class="form-actions">
-                <button type="button" class="btn secondary" id="cancel-inventory">Cancel</button>
-                <button type="submit" class="btn primary">Save Item</button>
-            </div>
-        </form>
+                <div class="dashboard-content">
+                    <h3>Recent Roasts</h3>
+                    <div id="recent-roasts" class="recent-roasts-list">
+                        <p>Loading…</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roasts ------------------------------------------------------ -->
+            <section id="roasts" class="section">
+                <div class="section-header">
+                    <h2>Roasting Schedule</h2>
+                    <button id="add-roast-btn" class="btn primary"><i class="fas fa-plus"></i> Add Roast</button>
+                </div>
+                <div class="table-container">
+                    <table id="roasts-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th><th>Bean</th><th>Origin</th>
+                                <th>Input (kg)</th><th>Output (kg)</th>
+                                <th>Yield %</th><th>Notes</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roasts-body"><tr><td colspan="8">Loading…</td></tr></tbody>
+                    </table>
+                </div>
+                <div class="section-actions">
+                    <button id="btn-export-roasts" class="btn secondary">Export CSV</button>
+                </div>
+            </section>
+
+            <!-- Inventory --------------------------------------------------- -->
+            <section id="inventory" class="section">
+                <div class="section-header">
+                    <h2>Green Coffee Inventory</h2>
+                    <button id="add-inventory-btn" class="btn primary"><i class="fas fa-plus"></i> Add Inventory</button>
+                </div>
+                <div class="table-container">
+                    <table id="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>Bean</th><th>Origin</th><th>Variety</th>
+                                <th>Process</th><th>Quantity (kg)</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-body"><tr><td colspan="6">Loading…</td></tr></tbody>
+                    </table>
+                </div>
+                <div class="section-actions">
+                    <button id="btn-export-inventory" class="btn secondary">Export CSV</button>
+                </div>
+            </section>
+        </main>
     </div>
-</div>
 
-<!-- Toast -->
-<div id="toast" class="toast hidden">
-    <div class="toast-content"><i class="fas fa-check-circle"></i><span id="toast-message"></span></div>
-</div>
+    <!-- ==== MODALS (Roast & Inventory) ==== -->
+    <!-- Roast Modal -->
+    <div id="roast-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="roast-modal-title">Add New Roast</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="roast-form">
+                <input type="hidden" id="roast-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roast-date">Date</label>
+                        <input type="date" id="roast-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roast-bean">Bean</label>
+                        <input type="text" id="roast-bean" placeholder="Ethiopia Yirgacheffe" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roast-origin">Origin</label>
+                        <input type="text" id="roast-origin" placeholder="Sidamo, Ethiopia">
+                    </div>
+                    <div class="form-group">
+                        <label for="roast-variety">Variety</label>
+                        <select id="roast-variety">
+                            <option>Arabica</option>
+                            <option>Robusta</option>
+                            <option>Liberica</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roast-input">Input (kg)</label>
+                        <input type="number" id="roast-input" step="0.1" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roast-output">Output (kg)</label>
+                        <input type="number" id="roast-output" step="0.1" min="0" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="roast-notes">Notes</label>
+                    <textarea id="roast-notes" rows="3" placeholder="Roasting notes…"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn secondary" id="cancel-roast">Cancel</button>
+                    <button type="submit" class="btn primary">Save Roast</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-<!-- Firebase SDKs (compat version) -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- Inventory Modal -->
+    <div id="inventory-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="inventory-modal-title">Add Inventory Item</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="inventory-form">
+                <input type="hidden" id="inventory-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inventory-bean">Bean</label>
+                        <input type="text" id="inventory-bean" placeholder="Ethiopia Yirgacheffe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inventory-quantity">Quantity (kg)</label>
+                        <input type="number" id="inventory-quantity" step="0.1" min="0" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inventory-origin">Origin</label>
+                        <input type="text" id="inventory-origin" placeholder="Sidamo, Ethiopia" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inventory-variety">Variety</label>
+                        <select id="inventory-variety">
+                            <option>Arabica</option>
+                            <option>Robusta</option>
+                            <option>Liberica</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inventory-process">Process</label>
+                        <select id="inventory-process">
+                            <option>Washed</option>
+                            <option>Natural</option>
+                            <option>Honey</option>
+                            <option>Semi‑washed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inventory-notes">Notes (optional)</label>
+                        <input type="text" id="inventory-notes" placeholder="High‑altitude, etc.">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn secondary" id="cancel-inventory">Cancel</button>
+                    <button type="submit" class="btn primary">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-<!-- App logic -->
-<script src="firebase.js"></script>
+    <!-- Toast (feedback) -->
+    <div id="toast" class="toast hidden">
+        <div class="toast-content"><i class="fas fa-check-circle"></i><span id="toast-message"></span></div>
+    </div>
+
+    <!-- ==== Firebase SDKs (compat version) ==== -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+    <!-- ==== APP LOGIC ==== -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>
