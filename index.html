@@ -263,10 +263,27 @@
         <div class="toast-content"><i class="fas fa-check-circle"></i><span id="toast-message"></span></div>
     </div>
 
-    <!-- ==== Firebase SDKs (compat version) ==== -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <!-- Firebase SDK (COMPAT ONLY) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+<!-- Firebase INIT (inline, clean) -->
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyB3XJrZRNxx7tvH0ugd49k_kEOUhxp2R60",
+  authDomain: "tet-s-coffee-roastery.firebaseapp.com",
+  projectId: "tet-s-coffee-roastery",
+  storageBucket: "tet-s-coffee-roastery.firebasestorage.app",
+  messagingSenderId: "68019552831",
+  appId: "1:68019552831:web:c6111a7f30b3c16156ae8a"
+};
+
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Your app -->
+<script src="app.js"></script>
 
     <!-- ==== APP LOGIC ==== -->
     
